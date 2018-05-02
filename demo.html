@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8" />
+	<title>移动端弹窗插件demo</title>
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	
+	<link href="https://cdn.bootcss.com/normalize/8.0.0/normalize.min.css" rel="stylesheet" />
+	<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://js.weikeniu.com/Scripts/fontSize.js"></script>
+	
+	
+	<!--弹窗插件js-->
+	<script src="wcPop.js"></script>
+	
+	<style type="text/css">
+		.sec-demo{background: #fff; border-bottom: 1px solid rgba(50,50,50,.15); font-family:Helvetica; padding: 10px;}
+		.sec-demo .hd{font-size: .28rem; padding: .1rem 0 .3rem;}
+		.sec-demo .hd i{background: #FF4351; display: inline-block; vertical-align:top; height: .4rem; width: .05rem;}
+		.sec-demo .cnt{display: flex; flex-wrap: wrap; justify-content: space-around;}
+		.sec-demo .cnt span{border: 1px solid #FF4351; border-radius: .05rem; color: #FF4351; font-size: .24rem;margin-bottom: .2rem; text-align: center; line-height: .6rem; width: 48%;}
+	</style>
+</head>
+
+<body>
+	
+	<div class="sec-demo">
+		<div class="hd"><i></i> DEMO演示(rem像素——fontSize版)</div>
+		<div class="cnt">
+			<span id="bind_btn1">msg提示</span>
+			<span id="bind_btn1_1">msg提示（黑色背景）</span>
+			<span onclick="bind_btn2()">信息框</span>
+			<span onclick="bind_btn3()">询问框</span>
+			<span onclick="bind_btn4()">自定义多按钮</span>
+			<span onclick="bind_btn5()">底部对话框</span>
+			<span onclick="bind_btn6()">ActionSheet弹出式菜单</span>
+			<span onclick="bind_btn7()">底部自定义页面层</span>
+			<span onclick="bind_btn8()">Toast演示</span>
+			<span onclick="bind_btn9()">更多...</span>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		/** ===测试demo */
+		//msg提示
+		$("#bind_btn1").on("click", function(){
+			wcPop({
+				anim: 'fadeIn',
+				content: '这里是msg提示框测试（5s后窗口关闭）',
+				shade: true,
+				shadeClose: false,
+				time: 5
+			});
+		});
+		
+		//msg提示（黑色背景）
+		$("#bind_btn1_1").on("click", function(){
+			wcPop({
+				content: '这里是msg提示框测试（2s后窗口关闭）',
+				shade: true,
+				style: 'background: rgba(17,17,17,.7); color: #fff;',
+				time: 2
+			});
+		});
+		
+		//信息框
+		bind_btn2 = function () {
+			var index = wcPop({
+				content: '信息框 （这里演示信息框功能效果，这里演示信息框功能效果，这里演示信息框功能效果）',
+				
+				shadeClose: true,
+				anim: 'rollIn',
+				
+				btns: [
+					{
+						text: '知道了',
+						style: 'color: #999',
+						onTap() {
+							wcPop.close(index);
+							console.log("知道了");
+						}
+					}
+				]
+			});
+		}
+		
+		//询问框
+		bind_btn3 = function () {
+			wcPop({
+				title: '温馨提示~~~',
+				content: '警告，非法操作非法操作非法操作非法操作非法操作非法操作非法操作！！！',
+				shadeClose: false,
+				style: 'min-width: 600rpx;',
+				anim: 'shake',
+				
+				btns: [
+					{
+						text: '取消',
+						onTap() {
+							console.log('您点击了取消！');
+							wcPop.close();
+						}
+					},
+					{
+						text: '确定',
+						onTap() {
+							console.log('您点击了确定！');
+						}
+					}
+				]
+			});
+		}
+		
+		//自定义多按钮
+		bind_btn4 = function () {
+			wcPop({
+				title: '^-^支付是一种态度',
+				content: '尊敬的用户，我们为您提供了“现金支付”和“微信支付两种方式”，请选择一种您的常用支付方式进行支付操作！！！',
+				style: 'border-top:5px solid #fa7f40;width:7.5rem', //自定义弹窗样式
+				shadeClose: false,
+				anim: 'fadeInUpBig',
+
+				btns: [
+					{
+						text: '现金支付',
+						style: 'color:#ff0000;',
+						onTap() {
+							console.log('您选择了现金支付！');
+						}
+					},
+					{
+						text: '微信支付',
+						style: 'color:#008200;',
+						onTap() {
+							console.log('您选择了微信支付！');
+						}
+					},
+					{
+						text: '支付宝支付',
+						style: 'color:#0000ff;',
+						onTap() {
+							console.log('您选择了支付宝支付！');
+						}
+					},
+					{
+						text: '取消',
+						onTap () {
+							console.log('您取消了支付请求！');
+							wcPop.close();
+						}
+					}
+				]
+			});
+		}
+		
+		//底部对话框
+		bind_btn5 = function () {
+			wcPop({
+				skin: 'footer',
+				content: '确定删除该条数据吗？删除后可在7天之内恢复数据，超过7天后数据就无法恢复啦！',
+				anim: 'footer',
+				shadeClose: false,
+				
+				btns: [
+					{
+						text: '删除',
+						style: 'color:#e63d23;',
+						onTap() {
+							console.log('您点击了删除！');
+							
+							//删除回调提示
+							wcPop({
+								anim: 'fadeIn',
+								content: '您点击了删除功能',
+								shade: true,
+								time: 3
+							});
+						}
+					},
+					{
+						text: '取消',
+						onTap() {
+							console.log('您点击了取消！');
+							wcPop.close();
+						}
+					}
+				]
+			});
+		}
+		
+		//ActionSheet底部弹出式菜单
+		bind_btn6 = function () {
+			wcPop({
+				skin: 'actionsheet',
+				content: '这是一个标题，可以为一行或者两行。',
+				anim: 'footer',
+				shadeClose: false,
+				
+				btns: [
+					{
+						text: '示例菜单-001',
+						style: 'color:#e63d23;',
+						onTap() {
+							console.log('您点击了示例菜单-001！');
+							
+							//删除回调提示
+							wcPop({
+								anim: 'fadeIn',
+								content: '您点击了示例菜单-001',
+								shade: true,
+								time: 3
+							});
+						}
+					},
+					{
+						text: '示例菜单-002',
+						//style: 'color:#808080;'
+					},
+					{
+						text: '示例菜单-003',
+						style: 'color:#808080;'
+					},
+					{
+						text: '取消',
+						onTap() {
+							console.log('您点击了取消！');
+							wcPop.close();
+						}
+					}
+				]
+			});
+		}
+		
+		//底部自定义页面层
+		bind_btn7 = function () {
+			wcPop({
+				skin: 'actionsheet',
+				content: '这是一个底部自定义页面层。 这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。这是一个底部自定义页面层。',
+				shadeClose: true,
+				anim: 'footer'
+			});
+		}
+		
+		//Toast演示
+		bind_btn8 = function(){
+			wcPop({
+				id: 'xwToast',
+				skin: 'toast',
+				content: '数据加载中...',
+				icon: 'loading', //success | info | error | loading
+				shade: false,
+				time: 3
+			});
+		}
+		
+		//更多接口功能...
+		bind_btn9 = function(){
+			wcPop.expectInterface("接口", "更多自定义接口功能！！！", 3);
+		}
+	</script>
+	
+</body>
+</html>

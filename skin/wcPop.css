@@ -1,0 +1,108 @@
+/**
+	wcPop.css v1.0 styleSheet（2018/03/30）
+	write by 【rem】
+*/
+.popui__modal-panel{position: relative;}
+.popui__modal-panel *{font-style: normal; font-weight: normal; list-style: none;}
+.popui__modal-mask {
+  background: black; opacity: .6; pointer-events: auto; height: 100%; width: 100%; position: fixed; top: 0; left: 0;
+  animation: mask-fadeIn .5s;
+}
+@keyframes mask-fadeIn {0% {opacity: 0;}100% {opacity: .6;}}
+.popui__panel-main{display: table; color:#333; font-family: 宋体,helvetica,arial,sans-serif; pointer-events: none; height: 100%; width: 100%; position: fixed; left: 0; top: 0;}
+.popui__panel-main .popui__panel-section{display: table-cell; vertical-align: middle; text-align: center;}
+.popui__panel-child{background: #fff; border-radius: .07rem; display: inline-block; pointer-events: auto; font-size: .28rem; text-align: left; max-width: 7rem; position: relative;}
+
+.popui__panel-tit{border-radius: .07rem .07rem 0 0; color:#333; font-size: .3rem; padding: 0 .2rem; padding-top:.15rem; text-align: center; height: .7rem; line-height: .7rem;}
+.popui__panel-cnt{
+	padding: .3rem .4rem; text-align: center; line-height: 1.5;
+}
+.popui__panel-btnwrap{padding-top:.8rem;}
+.popui__panel-btn{background: #fafafa; border-top: 1px solid #e5e5e5; border-bottom-left-radius: .07rem; border-bottom-right-radius: .07rem; display: flex; align-items: center; height: .8rem; line-height: .8rem; width: 100%; position: absolute;bottom: 0}
+.popui__panel-btn .btn{display: block; flex: 1; font-size: .3rem; text-align: center; position: relative;}
+.popui__panel-btn .btn:after{content:"";border-left:1px solid #e5e5e5;position:absolute;top:.2rem;bottom:.2rem;right:0;}
+.popui__panel-btn .btn:last-child:after{border:none;}
+
+/* __ 自定义样式 */
+/* 样式1（toast） */
+.popui__toast{background: rgba(17,17,17,.7); color: #fff; min-height: 2.4rem; width: 2.4rem;}
+.popui__toast .popui__toast-icon{margin-bottom: .05rem;}
+.popui__toast .popui__toast-icon img{height:.48rem;width:.48rem;}
+.popui__toast .popui__panel-cnt{padding: .7rem .2rem .3rem;}
+/* 样式2（底部弹出） */
+.popui__footer{background: 0 0; margin:0 auto; max-width: 100%; position: fixed; left: 0; right: 0; bottom: .2rem; width: 95%;}
+.popui__footer .popui__panel-cnt{background-color: rgba(255,255,255,.8); border-radius: .07rem .07rem 0 0; padding: .3rem .2rem;}
+.popui__footer .popui__panel-btnwrap{padding-top:0;}
+.popui__footer .popui__panel-btn{background: 0 0; border-top: 0; display: block; height: auto; position: static;}
+.popui__footer .popui__panel-btn .btn{background: rgba(255,255,255,.8); border-top: 1px solid #c5c5c5;}
+.popui__footer .popui__panel-btn .btn:after{border-left:none;}
+.popui__footer .popui__panel-btn .btn:nth-last-child(2){border-radius: 0 0 .07rem .07rem;}
+.popui__footer .popui__panel-btn .btn:nth-last-child(1){border-top: 0; border-radius: .07rem; margin-top: .2rem;}
+/* 样式3（actionsheet底部弹出式菜单） */
+.popui__actionsheet{border-radius: 0; margin:0 auto; max-width: 100%; position: fixed; left: 0; right: 0; bottom: 0; width: 100%;}
+.popui__actionsheet .popui__panel-cnt{padding: .3rem .2rem;}
+.popui__actionsheet .popui__panel-btnwrap{padding-top:0;}
+.popui__actionsheet .popui__panel-btn{background: 0 0; border-top: 0; display: block; height: auto; position: static;}
+.popui__actionsheet .popui__panel-btn .btn{border-top: 1px solid #e5e5e5;}
+.popui__actionsheet .popui__panel-btn .btn:after{border-left:none;}
+.popui__actionsheet .popui__panel-btn .btn:nth-last-child(1){border-top: .1rem solid #e5e5e5;}
+
+/* __ 弹窗动画 */
+.anim-fadeIn{animation: anim-fadeIn .5s;}
+.anim-scaleIn{animation: anim-scaleIn .3s;}
+.anim-fadeInUpBig{animation: anim-fadeInUpBig .3s;}
+.anim-fadeInDownBig{animation: anim-fadeInDownBig .3s;}
+.anim-rollIn{animation: anim-rollIn .3s;}
+.anim-shake{animation: anim-shake .3s;}
+.anim-loading{animation: anim-loading 1s steps(12, end) infinite;}
+.anim-footer{animation: anim-footer .3s;}
+/* 渐变 */
+@keyframes anim-fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+/* 缩放 */
+@keyframes anim-scaleIn {
+	0% {opacity: 0; transform: scale(.5);}
+	100% {opacity: 1; transform: scale(1);}
+}
+/* 由上向下打开 */
+@keyframes anim-fadeInUpBig {
+	0% {opacity: 0; transform: translateY(-2000px);}
+	100% {opacity: 1; transform: translateY(0);}
+}
+/* 由下向上打开 */
+@keyframes anim-fadeInDownBig {
+	0% {opacity: 0; transform: translateY(100%);}
+	100% {opacity: 1; transform: translateY(0);}
+}
+/* 左侧翻转打开 */
+@keyframes anim-rollIn {
+	0% {opacity: 0; transform: translateX(-100%) rotate(-120deg);}
+	100% {opacity: 1; transform: translateX(0) rotate(0);}
+}
+/* 震动 */
+@keyframes anim-shake {
+	0%,100% {transform: translateX(0);}
+	10%,30%,50%,70%,90% {transform: translateX(-10px);}
+	20%,40%,60%,80% {transform: translateX(10px);}
+}
+/* 加载中 */
+@keyframes anim-loading {
+	0% {transform: rotate3d(0, 0, 1, 0deg);}
+    100% {transform: rotate3d(0, 0, 1, 360deg);}
+}
+/* 底部向上弹出 */
+@keyframes anim-footer {
+	0% {opacity: 0; transform: translateY(800px)}
+	100% {opacity: 1; transform: translateY(0);}
+}
+
+
+/* 去除android上a、button、input标签点击产生的阴影 */
+a,button,input,label{-webkit-tap-highlight-color:rgba(255,0,0,0); outline:none;}
+/* __ flex弹性盒子 */
+.flexbox{display:-webkit-box; display:-webkit-flex; display:flex; display:-ms-flexbox;}
+.flex-alignc{align-items: center;}
+.flex1{-webkit-box-flex:1; -webkit-flex:1; -ms-flex:1; flex:1;}
+.flex2{-webkit-box-flex:2; -webkit-flex:2; -ms-flex:2; flex:2;}
