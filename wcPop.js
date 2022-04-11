@@ -1,7 +1,7 @@
 /**
-	* @title 			弹窗插件wcPop-v1.0 beta (UTF-8)
+	* @title 		弹窗插件wcPop-v1.0 beta (UTF-8)
 	* @Create		hison
-	* @Timer		2018/03/30 11:30:45 GMT+0800 (中国标准时间)
+	* @Timer		2018-03-30 11:30:45 GMT+0800 (中国标准时间)
 */
 !function(win){
 	var _doc = win.document, _docEle = _doc.documentElement, index = 0,
